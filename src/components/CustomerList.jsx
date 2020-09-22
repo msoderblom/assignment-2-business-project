@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import UserKit from "../data/UserKit";
 import { CustomerListContext } from "../contexts/CustomerListContext";
+import { Link } from "react-router-dom";
 
 export default function CustomerList() {
   const userKit = new UserKit();
@@ -10,7 +11,10 @@ export default function CustomerList() {
     userKit
       .getCustomerList()
       .then((res) => res.json())
-      .then((data) => setCustomerList(data.results));
+      .then((data) => {
+        setCustomerList(data.results);
+        console.log(data.results);
+      });
   }
 
   useEffect(() => {
@@ -26,7 +30,11 @@ export default function CustomerList() {
           customerList.map((customer) => {
             const id = customer.id;
             const name = customer.name;
-            return <li key={id}>{name}</li>;
+            return (
+              <li key={id}>
+                <Link to={`customer/${id}`}>{name}</Link>
+              </li>
+            );
           })}
       </ul>
     </div>
