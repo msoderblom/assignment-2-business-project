@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Switch, Route } from "react-router-dom";
-import LayoutAdmin from "./components/LayoutAdmin";
+/* import LayoutAdmin from "./components/LayoutAdmin"; */
 import { CustomerListContext } from "./contexts/CustomerListContext";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
