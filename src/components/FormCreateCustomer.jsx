@@ -1,8 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import FormInputStyled from "./FormInputStyled";
 import UserKit from "../data/UserKit";
+import { CustomerListContext } from "../contexts/CustomerListContext";
 
 export default function FormCreateCustomer() {
+  const userKit = new UserKit();
+  const { setCustomerList } = useContext(CustomerListContext);
+
   const [name, setName] = useState("");
   const [organisationNr, setOrganisationNr] = useState("");
   const [vatNr, setVatNr] = useState("");
@@ -12,29 +16,24 @@ export default function FormCreateCustomer() {
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
 
-  const userKit = new UserKit();
-
   function createCustomer() {
-    console.log(
-      name,
-      organisationNr,
-      vatNr,
-      reference,
-      paymentTerm,
-      website,
-      email,
-      phoneNumber
-    );
-    userKit.createCustomer(
-      name,
-      organisationNr,
-      vatNr,
-      reference,
-      paymentTerm,
-      website,
-      email,
-      phoneNumber
-    );
+    userKit
+      .createCustomer(
+        name,
+        organisationNr,
+        vatNr,
+        reference,
+        paymentTerm,
+        website,
+        email,
+        phoneNumber
+      )
+      .then(() => {
+        userKit
+          .getCustomerList()
+          .then((res) => res.json())
+          .then((data) => setCustomerList(data.results));
+      });
   }
 
   return (
