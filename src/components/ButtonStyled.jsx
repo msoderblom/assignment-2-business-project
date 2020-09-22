@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-const ButtonStyled = styled.button`
+const Button = styled.button`
   appearance: none;
   background-color: ${(props) => props.theme.summerSky};
   border: none;
@@ -17,8 +17,17 @@ const ButtonStyled = styled.button`
     background-color: white;
     cursor: pointer;
   }
+  &:focus {
+    outline: none;
+  }
 `;
 
-export default function Button({ title }) {
-  return <ButtonStyled>{title}</ButtonStyled>;
+export default function ButtonStyled({ title, onClickFunc }) {
+  function handleOnClick() {
+    if (onClickFunc) {
+      onClickFunc();
+    }
+  }
+
+  return <Button onClick={handleOnClick}>{title}</Button>;
 }
