@@ -2,6 +2,15 @@ import React, { useState, useContext } from "react";
 import FormInputStyled from "./FormInputStyled";
 import UserKit from "../data/UserKit";
 import { CustomerListContext } from "../contexts/CustomerListContext";
+import styled from "styled-components";
+import ButtonStyled from "./ButtonStyled";
+
+const StyledForm = styled.div`
+  background-color: ${(props) => props.theme.regalBlue};
+  display: grid;
+  gap: 1em;
+  padding: 2em;
+`;
 
 export default function FormCreateCustomer() {
   const userKit = new UserKit();
@@ -11,12 +20,13 @@ export default function FormCreateCustomer() {
   const [organisationNr, setOrganisationNr] = useState("");
   const [vatNr, setVatNr] = useState("");
   const [reference, setReference] = useState("");
-  const [paymentTerm, setPaymentTerm] = useState(Number);
+  const [paymentTerm, setPaymentTerm] = useState(1);
   const [website, setWebsite] = useState("");
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
 
   function createCustomer() {
+    console.log("creating customer");
     userKit
       .createCustomer(
         name,
@@ -37,7 +47,7 @@ export default function FormCreateCustomer() {
   }
 
   return (
-    <div>
+    <StyledForm>
       <FormInputStyled
         label="Name"
         stateVariable={name}
@@ -66,6 +76,7 @@ export default function FormCreateCustomer() {
         placeholder="Payment Terms"
         stateVariable={paymentTerm}
         stateSetVariable={setPaymentTerm}
+        inputType="number"
       />
       <FormInputStyled
         label="Website"
@@ -86,7 +97,7 @@ export default function FormCreateCustomer() {
         stateSetVariable={setPhoneNumber}
       />
 
-      <button onClick={createCustomer}>Create</button>
-    </div>
+      <ButtonStyled onClickFunc={createCustomer} title="Create Customer" />
+    </StyledForm>
   );
 }
