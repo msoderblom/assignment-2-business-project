@@ -4,55 +4,87 @@ import UserKit from "../data/UserKit";
 
 export default function FormCreateCustomer() {
   const [name, setName] = useState("");
+  const [organisationNr, setOrganisationNr] = useState("");
+  const [vatNr, setVatNr] = useState("");
+  const [reference, setReference] = useState("");
+  const [paymentTerm, setPaymentTerm] = useState(Number);
+  const [website, setWebsite] = useState("");
   const [email, setEmail] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+
   const userKit = new UserKit();
 
   function createCustomer() {
-    console.log(name, email);
-    userKit.createCustomer(name, email);
+    console.log(
+      name,
+      organisationNr,
+      vatNr,
+      reference,
+      paymentTerm,
+      website,
+      email,
+      phoneNumber
+    );
+    userKit.createCustomer(
+      name,
+      organisationNr,
+      vatNr,
+      reference,
+      paymentTerm,
+      website,
+      email,
+      phoneNumber
+    );
   }
 
   return (
     <div>
       <FormInputStyled
-        placeholder="Name"
+        label="Name"
         stateVariable={name}
         stateSetVariable={setName}
       />
       <FormInputStyled
+        label="Organization Number"
         placeholder="Organization Number"
-        stateVariable={name}
-        stateSetVariable={setName}
+        stateVariable={organisationNr}
+        stateSetVariable={setOrganisationNr}
       />
       <FormInputStyled
+        label="VAT identification number"
         placeholder="VAT identification number"
-        stateVariable={name}
-        stateSetVariable={setName}
+        stateVariable={vatNr}
+        stateSetVariable={setVatNr}
       />
       <FormInputStyled
+        label="Reference"
         placeholder="Reference"
-        stateVariable={name}
-        stateSetVariable={setName}
+        stateVariable={reference}
+        stateSetVariable={setReference}
       />
       <FormInputStyled
-        placeholder="Payment Terms (days)"
-        stateVariable={name}
-        stateSetVariable={setName}
+        label="Payment Terms (days)"
+        placeholder="Payment Terms"
+        stateVariable={paymentTerm}
+        stateSetVariable={setPaymentTerm}
       />
       <FormInputStyled
-        placeholder="Website"
-        stateVariable={name}
-        stateSetVariable={setName}
+        label="Website"
+        placeholder="organization.com"
+        stateVariable={website}
+        stateSetVariable={setWebsite}
       />
       <FormInputStyled
-        placeholder="Email"
+        label="Email"
+        placeholder="organization@email.com"
         stateVariable={email}
         stateSetVariable={setEmail}
       />
       <FormInputStyled
-        placeholder="Phone number"
-        stateVariable={email}
-        stateSetVariable={setEmail}
+        label="Phone number"
+        placeholder=""
+        stateVariable={phoneNumber}
+        stateSetVariable={setPhoneNumber}
       />
 
       <button onClick={createCustomer}>Create</button>

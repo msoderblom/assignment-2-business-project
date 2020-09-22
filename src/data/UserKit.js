@@ -59,11 +59,26 @@ export default class UserKit {
       headers: this.getPrivateHeaders(),
     });
   }
-  async createCustomer(name, email) {
+  async createCustomer(
+    name,
+    organisationNr,
+    vatNr,
+    reference,
+    paymentTerm,
+    website,
+    email,
+    phoneNumber
+  ) {
     const url = `${ROOT_URL}api/v1/customers`;
     const payload = {
       name,
+      organisationNr,
+      vatNr,
+      reference,
+      paymentTerm,
+      website,
       email,
+      phoneNumber,
     };
 
     return fetch(url, {
