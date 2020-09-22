@@ -20,7 +20,37 @@ export default function FormCreateCustomer() {
         stateSetVariable={setName}
       />
       <FormInputStyled
+        placeholder="Organization Number"
+        stateVariable={name}
+        stateSetVariable={setName}
+      />
+      <FormInputStyled
+        placeholder="VAT identification number"
+        stateVariable={name}
+        stateSetVariable={setName}
+      />
+      <FormInputStyled
+        placeholder="Reference"
+        stateVariable={name}
+        stateSetVariable={setName}
+      />
+      <FormInputStyled
+        placeholder="Payment Terms (days)"
+        stateVariable={name}
+        stateSetVariable={setName}
+      />
+      <FormInputStyled
+        placeholder="Website"
+        stateVariable={name}
+        stateSetVariable={setName}
+      />
+      <FormInputStyled
         placeholder="Email"
+        stateVariable={email}
+        stateSetVariable={setEmail}
+      />
+      <FormInputStyled
+        placeholder="Phone number"
         stateVariable={email}
         stateSetVariable={setEmail}
       />

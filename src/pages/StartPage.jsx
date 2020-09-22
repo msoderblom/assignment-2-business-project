@@ -10,7 +10,7 @@ export default function StartPage() {
         <Button title="Create a new account" />
       </Link>
       <Link to="/login">
-        <button>Login</button>
+        <Button title="Login" />
       </Link>
     </div>
   );
