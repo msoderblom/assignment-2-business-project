@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import UserKit from "../data/UserKit";
+import { CustomerListContext } from "../contexts/CustomerListContext";
 
 export default function CustomerList() {
   const userKit = new UserKit();
-  const [customerList, setCustomerList] = useState(null);
+  const { customerList, setCustomerList } = useContext(CustomerListContext);
+
   function getCustomerList() {
     userKit
       .getCustomerList()
