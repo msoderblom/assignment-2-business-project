@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Switch, Route } from "react-router-dom";
 /* import LayoutAdmin from "./components/LayoutAdmin"; */
 import { CustomerListContext } from "./contexts/CustomerListContext";
+import CustomerDetailPage from "./pages/CustomerDetailPage";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
@@ -15,12 +16,9 @@ function App() {
       <GlobalStyles></GlobalStyles>
       <CustomerListContext.Provider value={{ customerList, setCustomerList }}>
         <Switch>
-          {/*    <LayoutAdmin> */}
+          <Route path="/customer/:id" component={CustomerDetailPage} />
           <Route path="/home" component={HomePage} />
-          {/*       </LayoutAdmin> */}
-
           <Route path="/login" component={LoginPage} />
-
           <Route path="/register" component={RegisterPage} />
           <Route path="/" component={StartPage} />
         </Switch>
