@@ -74,6 +74,15 @@ export default class UserKit {
       headers: this.getPrivateHeaders(),
     });
   }
+  async updateCustomerDetails(id, payload) {
+    const url = `${ROOT_URL}api/v1/customers/${id}/`;
+
+    return fetch(url, {
+      method: "PATCH",
+      headers: this.getPrivateHeaders(),
+      body: JSON.stringify(payload),
+    });
+  }
   async createCustomer(
     name,
     organisationNr,
