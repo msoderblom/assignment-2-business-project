@@ -66,6 +66,14 @@ export default class UserKit {
       headers: this.getPrivateHeaders(),
     });
   }
+  async deleteCustomerDetails(id) {
+    const url = `${ROOT_URL}api/v1/customers/${id}/`;
+
+    return fetch(url, {
+      method: "DELETE",
+      headers: this.getPrivateHeaders(),
+    });
+  }
   async createCustomer(
     name,
     organisationNr,
