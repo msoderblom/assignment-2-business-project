@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
+import CustomerDetails from "../components/CustomerDetails";
+import ButtonStyled from "../components/ButtonStyled";
 import UserKit from "../data/UserKit";
 
 export default function CustomerDetailPage(props) {
   const userKit = new UserKit();
   const [customerObj, setCustomerObj] = useState(null);
+  const customerId = props.match.params.id;
+  const history = useHistory();
 
   function getCustomer() {
-    const customerId = props.match.params.id;
     console.log(customerId);
     userKit
       .getCustomerDetails(customerId)
@@ -15,6 +19,10 @@ export default function CustomerDetailPage(props) {
         setCustomerObj(data);
         console.log(data);
       });
+  }
+  function deleteCustomer() {
+    console.log(customerId);
+    userKit.deleteCustomerDetails(customerId).then(() => history.push("/home"));
   }
 
   useEffect(() => {
@@ -25,13 +33,8 @@ export default function CustomerDetailPage(props) {
   return (
     <div>
       Customer Details
-      {customerObj && (
-        <div>
-          <p>{customerObj.id}</p>
-          <p>{customerObj.name}</p>
-          <p>{customerObj.name}</p>
-        </div>
-      )}
+      <ButtonStyled onClickFunc={deleteCustomer} title="Delete Customer" />
+      {customerObj && <CustomerDetails customer={customerObj} />}
     </div>
   );
 }
