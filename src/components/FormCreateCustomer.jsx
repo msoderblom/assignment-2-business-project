@@ -89,6 +89,7 @@ export default function FormCreateCustomer() {
         placeholder="organization@email.com"
         stateVariable={email}
         stateSetVariable={setEmail}
+        inputType="email"
       />
       <FormInputStyled
         label="Phone number"
