@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { FiCheck, FiX } from "react-icons/fi";
 import styled from "styled-components";
+import FormInputStyled from "./FormInputStyled";
 
 const EditContainer = styled.div`
   display: flex;
@@ -17,9 +18,11 @@ export default function CustomerDetailEdit({
 }) {
   return (
     <EditContainer>
-      <input
-        value={stateValue}
-        onChange={(e) => setStateValue(e.target.value)}
+      <FormInputStyled
+        label={label}
+        stateVariable={stateValue}
+        stateSetVariable={setStateValue}
+        inputType={inputType}
       />
       <FiCheck
         color="green"
