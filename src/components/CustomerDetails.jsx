@@ -120,10 +120,13 @@ export default function CustomerDetails({ customer }) {
       <h3>{name}</h3>
 
       {inputList.map((inputItem) => {
-        const stateValue = inputItem.stateValue;
-        const setStateValue = inputItem.setStateValue;
-        const keyName = inputItem.keyName;
-        return renderDetails(stateValue, setStateValue, keyName);
+        return renderDetails(
+          inputItem.stateValue,
+          inputItem.setStateValue,
+          inputItem.keyName,
+          inputItem.label,
+          inputItem.inputType
+        );
       })}
     </Container>
   );
