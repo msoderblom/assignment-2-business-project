@@ -1,10 +1,14 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { FiCheck, FiX } from "react-icons/fi";
 import styled from "styled-components";
 import FormInputStyled from "./FormInputStyled";
 
 const EditContainer = styled.div`
   display: flex;
+  align-items: center;
+  justify-content: space-between;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
 `;
 
 export default function CustomerDetailEdit({
@@ -15,6 +19,8 @@ export default function CustomerDetailEdit({
   edit,
   setEdit,
   oldValue,
+  label,
+  inputType,
 }) {
   return (
     <EditContainer>
@@ -24,19 +30,21 @@ export default function CustomerDetailEdit({
         stateSetVariable={setStateValue}
         inputType={inputType}
       />
-      <FiCheck
-        color="green"
-        size="20"
-        onClick={() => handleEdit(keyName, stateValue)}
-      />
-      <FiX
-        color="red"
-        size="20"
-        onClick={() => {
-          setStateValue(oldValue);
-          setEdit({ ...edit, [keyName]: false });
-        }}
-      />
+      <div>
+        <FiCheck
+          color="green"
+          size="20"
+          onClick={() => handleEdit(keyName, stateValue)}
+        />
+        <FiX
+          color="red"
+          size="20"
+          onClick={() => {
+            setStateValue(oldValue);
+            setEdit({ ...edit, [keyName]: false });
+          }}
+        />
+      </div>
     </EditContainer>
   );
 }
