@@ -44,30 +44,62 @@ export default function CustomerDetails({ customer }) {
   const [phoneNumber, setPhoneNumber] = useState(customer.phoneNumber);
 
   const inputList = [
-    { stateValue: name, setStateValue: setName, keyName: "name" },
+    {
+      stateValue: name,
+      setStateValue: setName,
+      keyName: "name",
+      label: "Name",
+      inputType: "text",
+    },
     {
       stateValue: organisationNr,
       setStateValue: setOrganisationNr,
       keyName: "organisationNr",
+      label: "Organization Number",
+      inputType: "text",
     },
-    { stateValue: vatNr, setStateValue: setVatNr, keyName: "vatNr" },
+    {
+      stateValue: vatNr,
+      setStateValue: setVatNr,
+      keyName: "vatNr",
+      label: "VAT identification number",
+      inputType: "text",
+    },
 
     {
       stateValue: reference,
       setStateValue: setReference,
       keyName: "reference",
+      label: "Reference",
+      inputType: "text",
     },
     {
       stateValue: paymentTerm,
       setStateValue: setPaymentTerm,
       keyName: "paymentTerm",
+      label: "Payment Term (days)",
+      inputType: "number",
     },
-    { stateValue: website, setStateValue: setWebsite, keyName: "website" },
-    { stateValue: email, setStateValue: setEmail, keyName: "email" },
+    {
+      stateValue: website,
+      setStateValue: setWebsite,
+      keyName: "website",
+      label: "Website",
+      inputType: "text",
+    },
+    {
+      stateValue: email,
+      setStateValue: setEmail,
+      keyName: "email",
+      label: "Email",
+      inputType: "email",
+    },
     {
       stateValue: phoneNumber,
       setStateValue: setPhoneNumber,
       keyName: "phoneNumber",
+      label: "Phone Number",
+      inputType: "text",
     },
   ];
 
