@@ -17,6 +17,7 @@ const LabelStyled = styled.label`
   color: white;
   display: block;
   font-size: 0.9em;
+  font-weight: 200;
 `;
 
 export default function FormInputStyled({
@@ -29,7 +30,7 @@ export default function FormInputStyled({
   const type = inputType ? inputType : "text";
   return (
     <div>
-      <LabelStyled>{label} </LabelStyled>
+      <LabelStyled>{label}</LabelStyled>
       <InputStyled
         type={type}
         placeholder={placeholder}
