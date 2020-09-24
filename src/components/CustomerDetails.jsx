@@ -5,7 +5,15 @@ import CustomerDetailEdit from "./CustomerDetailEdit";
 import CustomerDetailInfo from "./CustomerDetailInfo";
 
 const Container = styled.div`
-  padding: 1em;
+  background-color: ${(props) => props.theme.regalBlue};
+  padding: 2em;
+  display: grid;
+  gap: 1em;
+  color: white;
+
+  @media screen and (max-width: 767px) {
+    padding: 1em;
+  }
 `;
 
 export default function CustomerDetails({ customer }) {
