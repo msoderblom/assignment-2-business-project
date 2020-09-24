@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FiCheck, FiX } from "react-icons/fi";
 import styled from "styled-components";
 
@@ -13,6 +13,7 @@ export default function CustomerDetailEdit({
   keyName,
   edit,
   setEdit,
+  oldValue,
 }) {
   return (
     <EditContainer>
@@ -28,7 +29,10 @@ export default function CustomerDetailEdit({
       <FiX
         color="red"
         size="20"
-        onClick={() => setEdit({ ...edit, [keyName]: false })}
+        onClick={() => {
+          setStateValue(oldValue);
+          setEdit({ ...edit, [keyName]: false });
+        }}
       />
     </EditContainer>
   );

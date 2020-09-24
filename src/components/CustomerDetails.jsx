@@ -11,7 +11,7 @@ const Container = styled.div`
 export default function CustomerDetails({ customer }) {
   const userKit = new UserKit();
 
-  console.log(Object.entries(customer));
+  /*  console.log(Object.entries(customer)); */
 
   const customerDetailsArr = Object.entries(customer).filter((detail) => {
     return (
@@ -93,6 +93,7 @@ export default function CustomerDetails({ customer }) {
           keyName={keyName}
           edit={edit}
           setEdit={setEdit}
+          oldValue={customer[keyName]}
         />
       );
     } else {
@@ -116,7 +117,7 @@ export default function CustomerDetails({ customer }) {
 
   return (
     <Container>
-      <h3>{customer.name}</h3>
+      <h3>{name}</h3>
 
       {inputList.map((inputItem) => {
         const stateValue = inputItem.stateValue;
