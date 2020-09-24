@@ -21,11 +21,11 @@ export default function CustomerDetails({ customer }) {
 
   /*  console.log(Object.entries(customer)); */
 
-  const customerDetailsArr = Object.entries(customer).filter((detail) => {
+  /*  const customerDetailsArr = Object.entries(customer).filter((detail) => {
     return (
       detail[0] !== "parent" && detail[0] !== "address" && detail[0] !== "id"
     );
-  });
+  }); */
 
   /*   console.log(customerDetailsArr); */
 
@@ -122,7 +122,7 @@ export default function CustomerDetails({ customer }) {
       .then(() => setEdit({ ...edit, [keyName]: false }));
   }
 
-  function renderDetails(stateValue, setStateValue, keyName) {
+  function renderDetails(stateValue, setStateValue, keyName, label, inputType) {
     if (edit[keyName]) {
       return (
         <CustomerDetailEdit
@@ -134,6 +134,8 @@ export default function CustomerDetails({ customer }) {
           edit={edit}
           setEdit={setEdit}
           oldValue={customer[keyName]}
+          label={label}
+          inputType={inputType}
         />
       );
     } else {
@@ -144,6 +146,7 @@ export default function CustomerDetails({ customer }) {
           setEdit={setEdit}
           edit={edit}
           keyName={keyName}
+          label={label}
         />
       );
     }
