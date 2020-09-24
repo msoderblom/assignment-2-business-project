@@ -42,14 +42,22 @@ export default function CustomerDetails({ customer }) {
 
   const customerId = customer.id;
 
-  const [name, setName] = useState(customer.name);
-  const [organisationNr, setOrganisationNr] = useState(customer.organisationNr);
-  const [vatNr, setVatNr] = useState(customer.vatNr);
-  const [reference, setReference] = useState(customer.reference);
+  const [name, setName] = useState(checkIfNull(customer.name));
+  const [organisationNr, setOrganisationNr] = useState(
+    checkIfNull(customer.organisationNr)
+  );
+  const [vatNr, setVatNr] = useState(checkIfNull(customer.vatNr));
+  const [reference, setReference] = useState(checkIfNull(customer.reference));
   const [paymentTerm, setPaymentTerm] = useState(customer.paymentTerm);
-  const [website, setWebsite] = useState(customer.website);
-  const [email, setEmail] = useState(customer.email);
-  const [phoneNumber, setPhoneNumber] = useState(customer.phoneNumber);
+  const [website, setWebsite] = useState(checkIfNull(customer.website));
+  const [email, setEmail] = useState(checkIfNull(customer.email));
+  const [phoneNumber, setPhoneNumber] = useState(
+    checkIfNull(customer.phoneNumber)
+  );
+
+  function checkIfNull(value) {
+    return value === null ? "" : value;
+  }
 
   const inputList = [
     {
