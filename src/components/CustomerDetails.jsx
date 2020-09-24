@@ -19,7 +19,7 @@ export default function CustomerDetails({ customer }) {
     );
   });
 
-  console.log(customerDetailsArr);
+  /*   console.log(customerDetailsArr); */
 
   const [edit, setEdit] = useState({
     name: false,
@@ -31,9 +31,45 @@ export default function CustomerDetails({ customer }) {
     email: false,
     phoneNumber: false,
   });
-  const [reference, setReference] = useState(customer.reference);
-  const [name, setName] = useState(customer.name);
+
   const customerId = customer.id;
+
+  const [name, setName] = useState(customer.name);
+  const [organisationNr, setOrganisationNr] = useState(customer.organisationNr);
+  const [vatNr, setVatNr] = useState(customer.vatNr);
+  const [reference, setReference] = useState(customer.reference);
+  const [paymentTerm, setPaymentTerm] = useState(customer.paymentTerm);
+  const [website, setWebsite] = useState(customer.website);
+  const [email, setEmail] = useState(customer.email);
+  const [phoneNumber, setPhoneNumber] = useState(customer.phoneNumber);
+
+  const inputList = [
+    { stateValue: name, setStateValue: setName, keyName: "name" },
+    {
+      stateValue: organisationNr,
+      setStateValue: setOrganisationNr,
+      keyName: "organisationNr",
+    },
+    { stateValue: vatNr, setStateValue: setVatNr, keyName: "vatNr" },
+
+    {
+      stateValue: reference,
+      setStateValue: setReference,
+      keyName: "reference",
+    },
+    {
+      stateValue: paymentTerm,
+      setStateValue: setPaymentTerm,
+      keyName: "paymentTerm",
+    },
+    { stateValue: website, setStateValue: setWebsite, keyName: "website" },
+    { stateValue: email, setStateValue: setEmail, keyName: "email" },
+    {
+      stateValue: phoneNumber,
+      setStateValue: setPhoneNumber,
+      keyName: "phoneNumber",
+    },
+  ];
 
   function handleEdit(keyName, value) {
     console.log(keyName, value);
@@ -46,14 +82,15 @@ export default function CustomerDetails({ customer }) {
       .then(() => setEdit({ ...edit, [keyName]: false }));
   }
 
-  function renderDetails() {
-    if (edit.name) {
+  function renderDetails(stateValue, setStateValue, keyName) {
+    if (edit[keyName]) {
       return (
         <CustomerDetailEdit
-          setStateValue={setName}
-          stateValue={name}
+          key={`${keyName}Edit`}
+          stateValue={stateValue}
+          setStateValue={setStateValue}
           handleEdit={handleEdit}
-          keyName={"name"}
+          keyName={keyName}
           edit={edit}
           setEdit={setEdit}
         />
@@ -61,10 +98,11 @@ export default function CustomerDetails({ customer }) {
     } else {
       return (
         <CustomerDetailInfo
-          stateValue={name}
+          key={`${keyName}Info`}
+          stateValue={stateValue}
           setEdit={setEdit}
           edit={edit}
-          keyName="name"
+          keyName={keyName}
         />
       );
     }
@@ -80,61 +118,12 @@ export default function CustomerDetails({ customer }) {
     <Container>
       <h3>{customer.name}</h3>
 
-      {renderDetails()}
-      {edit.reference ? (
-        <CustomerDetailEdit
-          setStateValue={setReference}
-          stateValue={reference}
-          handleEdit={handleEdit}
-          keyName={"reference"}
-          edit={edit}
-          setEdit={setEdit}
-        />
-      ) : (
-        <div>
-          <CustomerDetailInfo
-            stateValue={reference}
-            setEdit={setEdit}
-            edit={edit}
-            keyName="reference"
-          />
-        </div>
-      )}
-      {/*  <p>{customer.organisationNr}</p>
-      <p>{customer.vatNr}</p>
-      {edit.reference ? (
-        <div>
-          <input
-            value={reference}
-            onChange={(e) => setReference(e.target.value)}
-          />
-          <FiCheck
-            color="green"
-            size="20"
-            onClick={() => handleEdit("reference", reference)}
-          />
-          <FiX
-            color="red"
-            size="20"
-            onClick={() => setEdit({ ...edit, reference: false })}
-          />
-        </div>
-      ) : (
-        <div>
-          <p>{customer.reference}</p>
-          <FiEdit
-            color="#E0A000"
-            size="20"
-            onClick={() => setEdit({ ...edit, reference: true })}
-          />
-        </div>
-      )}
-      <p>{customer.paymentTerm}</p>
-      <a href={customer.website} target="_blank" rel="noopener noreferrer">
-        {customer.website}
-      </a>
-      <p>{customer.email}</p>
-      <p>{customer.phoneNumber}</p> */}
+      {inputList.map((inputItem) => {
+        const stateValue = inputItem.stateValue;
+        const setStateValue = inputItem.setStateValue;
+        const keyName = inputItem.keyName;
+        return renderDetails(stateValue, setStateValue, keyName);
+      })}
     </Container>
   );
 }
