@@ -27,25 +27,33 @@ export default function FormCreateCustomer() {
 
   function createCustomer() {
     console.log("creating customer");
-    userKit
-      .createCustomer(
-        name,
-        organisationNr,
-        vatNr,
-        reference,
-        paymentTerm,
-        website,
-        email,
-        phoneNumber
-      )
-      .then(() => {
-        userKit
-          .getCustomerList()
-          .then((res) => res.json())
-          .then((data) => setCustomerList(data.results));
-      });
-  }
 
+    const regex = RegExp("(SE)?[0-9]{12}");
+
+    if (!regex.test(vatNr.replace(/([^A-Z0-9]+)/gi, ""))) {
+      return;
+    } else {
+      setVatNr(vatNr.replace(/([^A-Z0-9]+)/gi, ""));
+
+      userKit
+        .createCustomer(
+          name,
+          organisationNr,
+          vatNr,
+          reference,
+          paymentTerm,
+          website,
+          email,
+          phoneNumber
+        )
+        .then(() => {
+          userKit
+            .getCustomerList()
+            .then((res) => res.json())
+            .then((data) => setCustomerList(data.results));
+        });
+    }
+  }
   return (
     <StyledForm>
       <FormInputStyled
