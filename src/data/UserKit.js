@@ -83,27 +83,9 @@ export default class UserKit {
       body: JSON.stringify(payload),
     });
   }
-  async createCustomer(
-    name,
-    organisationNr,
-    vatNr,
-    reference,
-    paymentTerm,
-    website,
-    email,
-    phoneNumber
-  ) {
+  async createCustomer(data) {
     const url = `${ROOT_URL}api/v1/customers`;
-    const payload = {
-      name,
-      organisationNr,
-      vatNr,
-      reference,
-      paymentTerm,
-      website,
-      email,
-      phoneNumber,
-    };
+    const payload = data;
 
     return fetch(url, {
       method: "POST",
