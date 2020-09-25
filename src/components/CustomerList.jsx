@@ -2,6 +2,15 @@ import React, { useContext, useEffect } from "react";
 import UserKit from "../data/UserKit";
 import { CustomerListContext } from "../contexts/CustomerListContext";
 import { Link } from "react-router-dom";
+import CustomerListItem from "./CustomerListItem";
+import styled from "styled-components";
+
+const UlStyled = styled.ul`
+  padding: 0;
+  display: grid;
+  gap: 5px;
+  list-style: none;
+`;
 
 export default function CustomerList() {
   const userKit = new UserKit();
@@ -25,18 +34,14 @@ export default function CustomerList() {
   return (
     <div>
       <h2>Your Customers</h2>
-      <ul>
+      <UlStyled>
         {customerList &&
           customerList.map((customer) => {
             const id = customer.id;
-            const name = customer.name;
-            return (
-              <li key={id}>
-                <Link to={`customer/${id}`}>{name}</Link>
-              </li>
-            );
+
+            return <CustomerListItem key={id} customer={customer} />;
           })}
-      </ul>
+      </UlStyled>
     </div>
   );
 }
