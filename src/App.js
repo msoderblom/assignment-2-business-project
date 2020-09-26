@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Switch, Route } from "react-router-dom";
-/* import LayoutAdmin from "./components/LayoutAdmin"; */
+import LayoutSimple from "./components/LayoutSimple";
 import { CustomerListContext } from "./contexts/CustomerListContext";
 import { UserContext } from "./contexts/UserContext";
 import CustomerDetailPage from "./pages/CustomerDetailPage";
@@ -19,13 +19,15 @@ function App() {
       <GlobalStyles></GlobalStyles>
       <CustomerListContext.Provider value={{ customerList, setCustomerList }}>
         <UserContext.Provider value={{ user, setUser }}>
-          <Switch>
-            <Route path="/customer/:id" component={CustomerDetailPage} />
-            <Route path="/home" component={HomePage} />
-            <Route path="/login" component={LoginPage} />
-            <Route path="/register" component={RegisterPage} />
-            <Route path="/" component={StartPage} />
-          </Switch>
+          <LayoutSimple>
+            <Switch>
+              <Route path="/customer/:id" component={CustomerDetailPage} />
+              <Route path="/home" component={HomePage} />
+              <Route path="/login" component={LoginPage} />
+              <Route path="/register" component={RegisterPage} />
+              <Route path="/" component={StartPage} />
+            </Switch>
+          </LayoutSimple>
         </UserContext.Provider>
       </CustomerListContext.Provider>
     </div>
