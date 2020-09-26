@@ -4,11 +4,18 @@ import { yupResolver } from "@hookform/resolvers";
 import * as yup from "yup";
 import UserKit from "../data/UserKit";
 import { CustomerListContext } from "../contexts/CustomerListContext";
+import FormStyledInput from "./FormStyledInput";
+import styled from "styled-components";
+
+const FormWapper = styled.div`
+  background-color: ${(props) => props.theme.regalBlue};
+  padding: 1em;
+`;
 
 const vatNrRegex = RegExp(/^(SE)?[0-9]{12}$/);
 
 const schema = yup.object().shape({
-  name: yup.string().required(),
+  name: yup.string().required("Name is required."),
   organisationNr: yup
     .string()
     .trim()
@@ -18,9 +25,10 @@ const schema = yup.object().shape({
     ),
   paymentTerm: yup
     .number()
+    .typeError("Payment Term is required.")
     .integer("Payment Term must be un integer")
     .min(0, "Payment Term must be a positive number, at least 0.")
-    .required(),
+    .required("Payment Term is required."),
   email: yup.string().email(),
   vatNr: yup
     .string()
@@ -47,40 +55,66 @@ export default function FormCreateCustomer() {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <label>Name</label>
-      <input name="name" ref={register} />
-      <p>{errors.name?.message}</p>
+    <FormWapper>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <FormStyledInput
+          label="Name"
+          name="name"
+          register={register}
+          error={errors.name?.message}
+        />
 
-      <label>Organization Number</label>
-      <input name="organisationNr" ref={register} />
-      <p>{errors.organisationNr?.message}</p>
+        <FormStyledInput
+          label="Organization Number"
+          name="organisationNr"
+          register={register}
+          error={errors.organisationNr?.message}
+        />
+        {/*   <p>{errors.organisationNr?.message}</p> */}
+        <FormStyledInput
+          label="VAT identification number"
+          name="vatNr"
+          placeholder="SE999999999901"
+          register={register}
+          error={errors.vatNr?.message}
+        />
 
-      <label>VAT identification number</label>
-      <input name="vatNr" ref={register} placeholder="SE999999999901" />
-      <p>{errors.vatNr?.message}</p>
+        <FormStyledInput
+          label="Reference"
+          name="reference"
+          register={register}
+        />
+        <FormStyledInput
+          label="Payment Term (days)"
+          name="paymentTerm"
+          register={register}
+          inputType="number"
+          error={errors.paymentTerm?.message}
+        />
 
-      <label>Reference</label>
-      <input name="reference" ref={register} />
+        <FormStyledInput
+          label="Website"
+          name="website"
+          placeholder="https://example.com"
+          register={register}
+          inputType="url"
+        />
+        <FormStyledInput
+          label="Email"
+          name="email"
+          placeholder="org@email.com"
+          register={register}
+          inputType="email"
+        />
+        <FormStyledInput
+          label="Phone Number"
+          name="phoneNumber"
+          register={register}
+          inputType="tel"
+        />
 
-      <label>Payment Term (days)</label>
-      <input name="paymentTerm" type="number" ref={register} defaultValue={0} />
-      <p>{errors.paymentTerm?.message}</p>
-
-      <label>Website</label>
-      <input
-        name="website"
-        type="url"
-        placeholder="https://example.com"
-        ref={register}
-      />
-
-      <label>Email</label>
-      <input name="email" type="email" ref={register} />
-      <label>Phone Number</label>
-      <input name="phoneNumber" type="tel" ref={register} />
-
-      <input type="submit" />
-    </form>
+        <button type="submit">Create</button>
+      </form>
+    </FormWapper>
   );
 }
