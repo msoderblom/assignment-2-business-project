@@ -9,7 +9,18 @@ const vatNrRegex = RegExp(/^(SE)?[0-9]{12}$/);
 
 const schema = yup.object().shape({
   name: yup.string().required(),
-  paymentTerm: yup.number().required(),
+  organisationNr: yup
+    .string()
+    .trim()
+    .length(
+      10,
+      `The organization number must be 10 digits without spaces in between.`
+    ),
+  paymentTerm: yup
+    .number()
+    .integer("Payment Term must be un integer")
+    .min(0, "Payment Term must be a positive number, at least 0.")
+    .required(),
   email: yup.string().email(),
   vatNr: yup
     .string()
@@ -43,16 +54,17 @@ export default function FormCreateCustomer() {
 
       <label>Organization Number</label>
       <input name="organisationNr" ref={register} />
+      <p>{errors.organisationNr?.message}</p>
 
       <label>VAT identification number</label>
-      <input name="vatNr" ref={register} />
+      <input name="vatNr" ref={register} placeholder="SE999999999901" />
       <p>{errors.vatNr?.message}</p>
 
       <label>Reference</label>
       <input name="reference" ref={register} />
 
       <label>Payment Term (days)</label>
-      <input name="paymentTerm" type="number" ref={register} />
+      <input name="paymentTerm" type="number" ref={register} defaultValue={0} />
       <p>{errors.paymentTerm?.message}</p>
 
       <label>Website</label>
