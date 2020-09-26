@@ -1,12 +1,22 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
+import FormStyledInput from "../components/FormStyledInput";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers";
+import * as yup from "yup";
 import UserKit from "../data/UserKit";
+
+const schema = yup.object().shape({
+  email: yup.string().email().required(),
+  password: yup.string().required(),
+});
 
 export default function LoginPage() {
   const userKit = new UserKit();
 
-  const [loginEmail, setLoginEmail] = useState("");
-  const [loginPassword, setLoginPassword] = useState("");
+  const { register, handleSubmit, errors } = useForm({
+    resolver: yupResolver(schema),
+  });
 
   const history = useHistory();
   const searchString = history.location.search;
@@ -22,8 +32,11 @@ export default function LoginPage() {
       history.push("/login");
     });
   }
-  function handleLogin() {
-    console.log(loginEmail, loginPassword);
+  function handleLogin(data) {
+    console.log(data);
+    const loginEmail = data.email;
+    const loginPassword = data.password;
+
     userKit
       .login(loginEmail, loginPassword)
       .then((res) => res.json())
@@ -43,20 +56,23 @@ export default function LoginPage() {
       ) : (
         <div>
           <h2>Login</h2>
-          <input
-            placeholder="Email"
-            type="email"
-            value={loginEmail}
-            onChange={(e) => setLoginEmail(e.target.value)}
-          />
-          <input
-            placeholder="Password"
-            type="password"
-            value={loginPassword}
-            onChange={(e) => setLoginPassword(e.target.value)}
-          />
+          <form onSubmit={handleSubmit(handleLogin)}>
+            <FormStyledInput
+              label="Email"
+              name="email"
+              placeholder="name@email.com"
+              register={register}
+              inputType="email"
+            />
+            <FormStyledInput
+              label="Password"
+              name="password"
+              register={register}
+              inputType="password"
+            />
 
-          <button onClick={handleLogin}>Login</button>
+            <button type="submit">Login</button>
+          </form>
         </div>
       )}
     </div>
