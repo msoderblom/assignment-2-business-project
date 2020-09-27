@@ -21,7 +21,7 @@ const schema = yup.object().shape({
     .trim()
     .length(
       10,
-      `The organization number must be 10 digits without spaces in between.`
+      `The organisation number must be 10 digits without spaces in between.`
     ),
   paymentTerm: yup
     .number()
@@ -65,7 +65,7 @@ export default function FormCreateCustomer() {
         />
 
         <FormStyledInput
-          label="Organization Number"
+          label="Organisation Number"
           name="organisationNr"
           register={register}
           error={errors.organisationNr?.message}
