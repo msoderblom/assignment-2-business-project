@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
+import { EditCustomerContext } from "../contexts/EditCustomerContext";
 import UserKit from "../data/UserKit";
 import CustomerDetailEdit from "./CustomerDetailEdit";
 import CustomerDetailInfo from "./CustomerDetailInfo";
@@ -19,26 +20,7 @@ const Container = styled.div`
 export default function CustomerDetails({ customer }) {
   const userKit = new UserKit();
 
-  /*  console.log(Object.entries(customer)); */
-
-  /*  const customerDetailsArr = Object.entries(customer).filter((detail) => {
-    return (
-      detail[0] !== "parent" && detail[0] !== "address" && detail[0] !== "id"
-    );
-  }); */
-
-  /*   console.log(customerDetailsArr); */
-
-  const [edit, setEdit] = useState({
-    name: false,
-    organisationNr: false,
-    vatNr: false,
-    reference: false,
-    paymentTerm: false,
-    website: false,
-    email: false,
-    phoneNumber: false,
-  });
+  const { edit, setEdit } = useContext(EditCustomerContext);
 
   const customerId = customer.id;
 
@@ -139,8 +121,6 @@ export default function CustomerDetails({ customer }) {
           setStateValue={setStateValue}
           handleEdit={handleEdit}
           keyName={keyName}
-          edit={edit}
-          setEdit={setEdit}
           oldValue={customer[keyName]}
           label={label}
           inputType={inputType}

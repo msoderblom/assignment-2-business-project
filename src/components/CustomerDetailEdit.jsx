@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import { FiCheck, FiX } from "react-icons/fi";
 import styled from "styled-components";
+import { EditCustomerContext } from "../contexts/EditCustomerContext";
 import FormInputStyled from "./FormInputStyled";
 
 const EditContainer = styled.div`
@@ -16,12 +17,11 @@ export default function CustomerDetailEdit({
   stateValue,
   handleEdit,
   keyName,
-  edit,
-  setEdit,
   oldValue,
   label,
   inputType,
 }) {
+  const { edit, setEdit } = useContext(EditCustomerContext);
   return (
     <EditContainer>
       <FormInputStyled
