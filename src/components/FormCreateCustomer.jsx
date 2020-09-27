@@ -39,7 +39,7 @@ const schema = yup.object().shape({
 export default function FormCreateCustomer() {
   const userKit = new UserKit();
   const { setCustomerList } = useContext(CustomerListContext);
-  const { register, handleSubmit, errors } = useForm({
+  const { register, handleSubmit, errors, reset } = useForm({
     resolver: yupResolver(schema),
   });
 
@@ -50,7 +50,10 @@ export default function FormCreateCustomer() {
       userKit
         .getCustomerList()
         .then((res) => res.json())
-        .then((data) => setCustomerList(data.results));
+        .then((data) => {
+          setCustomerList(data.results);
+          reset();
+        });
     });
   }
 
