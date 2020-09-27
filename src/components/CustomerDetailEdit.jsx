@@ -31,19 +31,17 @@ export default function CustomerDetailEdit({
         inputType={inputType}
       />
       <div>
-        <FiCheck
-          color="green"
-          size="20"
-          onClick={() => handleEdit(keyName, stateValue)}
-        />
-        <FiX
-          color="red"
-          size="20"
+        <button onClick={() => handleEdit(keyName, stateValue)}>
+          <FiCheck color="green" size="20" />
+        </button>
+        <button
           onClick={() => {
             setStateValue(oldValue);
             setEdit({ ...edit, [keyName]: false });
           }}
-        />
+        >
+          <FiX color="red" size="20" />
+        </button>
       </div>
     </EditContainer>
   );

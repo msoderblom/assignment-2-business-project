@@ -26,11 +26,9 @@ export default function CustomerDetailInfo({
         <Label>{label}</Label>
         <p>{stateValue}</p>
       </div>
-      <FiEdit
-        color="#E0A000"
-        size="20"
-        onClick={() => setEdit({ ...edit, [keyName]: true })}
-      />
+      <button onClick={() => setEdit({ ...edit, [keyName]: true })}>
+        <FiEdit color="#E0A000" size="20" />
+      </button>
     </Container>
   );
 }
