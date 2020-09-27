@@ -14,7 +14,7 @@ const schema = yup.object().shape({
 export default function LoginPage() {
   const userKit = new UserKit();
 
-  const { register, handleSubmit, errors } = useForm({
+  const { register, handleSubmit, errors, setError } = useForm({
     resolver: yupResolver(schema),
   });
 
@@ -37,13 +37,21 @@ export default function LoginPage() {
     const loginEmail = data.email;
     const loginPassword = data.password;
 
-    userKit
-      .login(loginEmail, loginPassword)
-      .then((res) => res.json())
-      .then((data) => {
-        userKit.setToken(data.token);
-        history.push("/home");
-      });
+    userKit.login(loginEmail, loginPassword).then((res) => {
+      if (res.ok) {
+        res.json().then((data) => {
+          userKit.setToken(data.token);
+          history.push("/home");
+        });
+      } else {
+        console.log("fel inlogg");
+        setError("credentials", {
+          type: "manual",
+          message:
+            "Unable to sign in with the credentials provided. Try again.",
+        });
+      }
+    });
   }
 
   return (
@@ -57,6 +65,8 @@ export default function LoginPage() {
         <div>
           <h2>Login</h2>
           <form onSubmit={handleSubmit(handleLogin)}>
+            <p> {errors.credentials?.message}</p>
+
             <FormStyledInput
               label="Email"
               name="email"
@@ -71,7 +81,7 @@ export default function LoginPage() {
               inputType="password"
             />
 
-            <button type="submit">Login</button>
+            <button type="submit">Sign in</button>
           </form>
         </div>
       )}
