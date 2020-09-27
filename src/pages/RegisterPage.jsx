@@ -6,7 +6,7 @@ export default function RegisterPage() {
 
   return (
     <div>
-      {hasRegistered ? (
+      {hasRegistered && (
         <div>
           <h3>Your account is almost registered!</h3>
           <p>
@@ -14,9 +14,8 @@ export default function RegisterPage() {
             your account.
           </p>
         </div>
-      ) : (
-        <FormRegister setHasRegistered={setHasRegistered}></FormRegister>
       )}
+      <FormRegister setHasRegistered={setHasRegistered}></FormRegister>
     </div>
   );
 }

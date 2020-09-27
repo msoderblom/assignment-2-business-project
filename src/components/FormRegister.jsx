@@ -91,7 +91,7 @@ export default function FormRegister({ setHasRegistered }) {
       .register(data)
       .then((res) => {
         if (res.ok) {
-          /* setHasRegistered(true); */
+          setHasRegistered(true);
           reset();
         } else {
           throw new Error("Something went wrong");
