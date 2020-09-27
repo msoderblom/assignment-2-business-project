@@ -20,13 +20,15 @@ const schema = yup.object().shape({
     .max(30, `Last name can't be more than 30 character.`),
   email: yup.string().email().required(),
   password: yup.string().required(),
-  organisationName: yup.string().required(),
-  organisationKind: yup.string().required(),
+  organisationName: yup.string().required("Organisation name is required."),
+  organisationKind: yup
+    .string()
+    .required("Organisation kind is required.")
+    .trim()
+    .length(1, "Organisation kind must be exactly one character (0, 1 or 2).")
+    .matches(RegExp(/[012]/), "Organisation kind must be 0, 1 or 2."),
 });
 
-// first name: maxLength:30 minLength: 1
-// Last name: maxLength:30 minLength: 1
-// 0, 1 ,2 på org kind
 // password minst 8 tecken
 // This password is too common. This password is completely digital.
 // kolla så att det inte bara är siffror
