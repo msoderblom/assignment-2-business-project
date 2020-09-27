@@ -1,24 +1,10 @@
 const ROOT_URL = "https://frebi.willandskill.eu/";
 
 export default class UserKit {
-  async register(
-    firstName,
-    lastName,
-    password,
-    email,
-    organisationName,
-    organisationKind
-  ) {
+  async register(registrationData) {
     const url = `${ROOT_URL}auth/users/`;
 
-    const payload = {
-      firstName,
-      lastName,
-      email,
-      password,
-      organisationName,
-      organisationKind,
-    };
+    const payload = registrationData;
     return fetch(url, {
       method: "POST",
       headers: this.getPublicHeaders(),
