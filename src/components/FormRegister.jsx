@@ -40,10 +40,15 @@ const schema = yup.object().shape({
 // 1234683y: Godkänt
 // email: Un objet user avec ce champ adresse électronique existe déjà. ??
 
+/* setError("username", {
+  type: "manual",
+  message: "Dont Forget Your Username Should Be Cool!"
+}); */
+
 export default function FormRegister({ setHasRegistered }) {
   const userKit = new UserKit();
 
-  const { register, handleSubmit, errors } = useForm({
+  const { register, handleSubmit, errors, reset } = useForm({
     resolver: yupResolver(schema),
   });
 
@@ -86,7 +91,8 @@ export default function FormRegister({ setHasRegistered }) {
       .register(data)
       .then((res) => {
         if (res.ok) {
-          setHasRegistered(true);
+          /* setHasRegistered(true); */
+          reset();
         } else {
           throw new Error("Something went wrong");
         }
