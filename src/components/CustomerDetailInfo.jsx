@@ -22,7 +22,16 @@ export default function CustomerDetailInfo({ stateValue, keyName, label }) {
         <Label>{label}</Label>
         <p>{stateValue}</p>
       </div>
-      <button onClick={() => setEdit({ ...edit, [keyName]: true })}>
+      <button
+        onClick={() => {
+          /*  Object.keys(edit).forEach((editKey) => {
+            setEdit({ ...edit, [editKey]: false });
+            console.log(edit);
+          }); */
+          setEdit({ ...edit, [keyName]: true });
+          console.log(edit);
+        }}
+      >
         <FiEdit color="#E0A000" size="20" />
       </button>
     </Container>

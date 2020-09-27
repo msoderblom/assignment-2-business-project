@@ -7,6 +7,7 @@ import { EditCustomerContext } from "../contexts/EditCustomerContext";
 import UserKit from "../data/UserKit";
 import CustomerDetailEdit from "./CustomerDetailEdit";
 import CustomerDetailInfo from "./CustomerDetailInfo";
+import FormStyledInput from "./FormStyledInput";
 
 const Container = styled.div`
   background-color: ${(props) => props.theme.regalBlue};
@@ -46,10 +47,6 @@ const schema = yup.object().shape({
 });
 
 export default function CustomerDetails({ customer }) {
-  const { register, handleSubmit, errors, reset } = useForm({
-    resolver: yupResolver(schema),
-  });
-
   const userKit = new UserKit();
 
   const { edit, setEdit } = useContext(EditCustomerContext);
@@ -135,29 +132,34 @@ export default function CustomerDetails({ customer }) {
     },
   ];
 
-  function handleEdit(keyName, value) {
-    console.log(keyName, value);
-    const payload = {
-      [keyName]: value,
-    };
+  function handleEdit(data) {
+    console.log("form data: ", data);
+    console.log(Object.keys(data)[0]);
 
-    userKit
-      .updateCustomerDetails(customerId, payload)
-      .then(() => setEdit({ ...edit, [keyName]: false }));
+    const keyName = Object.keys(data)[0];
+
+    const payload = data;
+
+    userKit.updateCustomerDetails(customerId, payload).then(() => {
+      setEdit({ ...edit, [keyName]: false });
+      const setStateFunc = inputList.find((input) => input.keyName === keyName)
+        .setStateValue;
+
+      setStateFunc(data[keyName]);
+    });
   }
 
-  function renderDetails(stateValue, setStateValue, keyName, label, inputType) {
+  function renderDetails(stateValue, keyName, label, inputType) {
     if (edit[keyName]) {
       return (
         <CustomerDetailEdit
           key={`${keyName}Edit`}
-          stateValue={stateValue}
-          setStateValue={setStateValue}
           handleEdit={handleEdit}
           keyName={keyName}
-          oldValue={customer[keyName]}
+          defaultValue={customer[keyName]}
           label={label}
           inputType={inputType}
+          schema={yup.object().shape({ [keyName]: schema.fields[keyName] })}
         />
       );
     } else {
@@ -185,7 +187,6 @@ export default function CustomerDetails({ customer }) {
       {inputList.map((inputItem) => {
         return renderDetails(
           inputItem.stateValue,
-          inputItem.setStateValue,
           inputItem.keyName,
           inputItem.label,
           inputItem.inputType
