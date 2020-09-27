@@ -1,4 +1,7 @@
+import { yupResolver } from "@hookform/resolvers";
+import * as yup from "yup";
 import React, { useContext, useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 import styled from "styled-components";
 import { EditCustomerContext } from "../contexts/EditCustomerContext";
 import UserKit from "../data/UserKit";
@@ -17,7 +20,36 @@ const Container = styled.div`
   }
 `;
 
+const schema = yup.object().shape({
+  name: yup.string().required("Name is required."),
+  organisationNr: yup
+    .string()
+    .trim()
+    .length(
+      10,
+      `The organisation number must be 10 digits without spaces in between.`
+    ),
+  paymentTerm: yup
+    .number()
+    .typeError("Payment Term is required.")
+    .integer("Payment Term must be un integer")
+    .min(0, "Payment Term must be a positive number, at least 0.")
+    .required("Payment Term is required."),
+  email: yup.string().email(),
+  vatNr: yup
+    .string()
+    .matches(
+      RegExp(/^(SE)?[0-9]{12}$/),
+      "VAT Nr must follow this fotmat: SE999999999901"
+    ),
+  /* website: yup.string().url(), */
+});
+
 export default function CustomerDetails({ customer }) {
+  const { register, handleSubmit, errors, reset } = useForm({
+    resolver: yupResolver(schema),
+  });
+
   const userKit = new UserKit();
 
   const { edit, setEdit } = useContext(EditCustomerContext);
@@ -40,6 +72,8 @@ export default function CustomerDetails({ customer }) {
   function checkIfNull(value) {
     return value === null ? "" : value;
   }
+
+  //setValue("lastName", "Hopper")
 
   const inputList = [
     {
@@ -131,8 +165,6 @@ export default function CustomerDetails({ customer }) {
         <CustomerDetailInfo
           key={`${keyName}Info`}
           stateValue={stateValue}
-          setEdit={setEdit}
-          edit={edit}
           keyName={keyName}
           label={label}
         />
