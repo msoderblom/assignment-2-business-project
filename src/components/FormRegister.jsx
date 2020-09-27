@@ -17,9 +17,16 @@ const schema = yup.object().shape({
     .required("Last name is required.")
     .trim()
     .min(1, "Last name must be at least 1 character.")
-    .max(30, `Last name can't be more than 30 character.`),
+    .max(30, `Last name can't be more than 30 characters.`),
   email: yup.string().email().required(),
-  password: yup.string().required(),
+  password: yup
+    .string()
+    .required("Password is required.")
+    .min(8, "Password must be at least 8 characters.")
+    .matches(
+      RegExp(/(?!^\d+$)^.+$/),
+      "The password must not only consist of numbers."
+    ),
   organisationName: yup.string().required("Organisation name is required."),
   organisationKind: yup
     .string()
@@ -29,9 +36,6 @@ const schema = yup.object().shape({
     .matches(RegExp(/[012]/), "Organisation kind must be 0, 1 or 2."),
 });
 
-// password minst 8 tecken
-// This password is too common. This password is completely digital.
-// kolla så att det inte bara är siffror
 // 1234567u: This password is too common
 // 1234683y: Godkänt
 // email: Un objet user avec ce champ adresse électronique existe déjà. ??
