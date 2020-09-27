@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import { FiEdit } from "react-icons/fi";
 import styled from "styled-components";
+import { EditCustomerContext } from "../contexts/EditCustomerContext";
 
 const Container = styled.div`
   display: flex;
@@ -13,13 +14,8 @@ const Label = styled.p`
   font-size: 0.9em;
 `;
 
-export default function CustomerDetailInfo({
-  stateValue,
-  setEdit,
-  edit,
-  keyName,
-  label,
-}) {
+export default function CustomerDetailInfo({ stateValue, keyName, label }) {
+  const { edit, setEdit } = useContext(EditCustomerContext);
   return (
     <Container>
       <div>
