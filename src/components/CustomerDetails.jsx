@@ -1,16 +1,14 @@
-import { yupResolver } from "@hookform/resolvers";
 import * as yup from "yup";
 import React, { useContext, useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
 import styled from "styled-components";
 import { EditCustomerContext } from "../contexts/EditCustomerContext";
 import UserKit from "../data/UserKit";
 import CustomerDetailEdit from "./CustomerDetailEdit";
 import CustomerDetailInfo from "./CustomerDetailInfo";
-import FormStyledInput from "./FormStyledInput";
+import { createCustomerSchema } from "../validationSchemas/createCustomerSchema";
 
 const Container = styled.div`
-  background-color: ${(props) => props.theme.regalBlue};
+  background-color: ${(props) => props.theme.blackcurrant};
   padding: 2em;
   display: grid;
   gap: 1em;
@@ -20,31 +18,6 @@ const Container = styled.div`
     padding: 1em;
   }
 `;
-
-const schema = yup.object().shape({
-  name: yup.string().required("Name is required."),
-  organisationNr: yup
-    .string()
-    .trim()
-    .length(
-      10,
-      `The organisation number must be 10 digits without spaces in between.`
-    ),
-  paymentTerm: yup
-    .number()
-    .typeError("Payment Term is required.")
-    .integer("Payment Term must be un integer")
-    .min(0, "Payment Term must be a positive number, at least 0.")
-    .required("Payment Term is required."),
-  email: yup.string().email(),
-  vatNr: yup
-    .string()
-    .matches(
-      RegExp(/^(SE)?[0-9]{12}$/),
-      "VAT Nr must follow this fotmat: SE999999999901"
-    ),
-  /* website: yup.string().url(), */
-});
 
 export default function CustomerDetails({ customer }) {
   const userKit = new UserKit();
@@ -69,8 +42,6 @@ export default function CustomerDetails({ customer }) {
   function checkIfNull(value) {
     return value === null ? "" : value;
   }
-
-  //setValue("lastName", "Hopper")
 
   const inputList = [
     {
@@ -152,7 +123,7 @@ export default function CustomerDetails({ customer }) {
   function renderDetails(stateValue, keyName, label, inputType) {
     const validationSchema = yup
       .object()
-      .shape({ [keyName]: schema.fields[keyName] });
+      .shape({ [keyName]: createCustomerSchema.fields[keyName] });
 
     if (edit[keyName]) {
       return (
