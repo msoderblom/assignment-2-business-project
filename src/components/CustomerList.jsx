@@ -25,7 +25,6 @@ export default function CustomerList() {
       .then((res) => res.json())
       .then((data) => {
         setCustomerList(data.results);
-        console.log(data.results);
       });
   }
 

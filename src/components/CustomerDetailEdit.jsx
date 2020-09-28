@@ -41,7 +41,6 @@ export default function CustomerDetailEdit({
   });
   const { edit, setEdit } = useContext(EditCustomerContext);
 
-  console.log(schema);
   useEffect(() => {
     setValue(keyName, defaultValue);
     // eslint-disable-next-line

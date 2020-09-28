@@ -35,17 +35,14 @@ export default function CustomerDetailPage(props) {
   });
 
   function getCustomer() {
-    console.log(customerId);
     userKit
       .getCustomerDetails(customerId)
       .then((res) => res.json())
       .then((data) => {
         setCustomerObj(data);
-        console.log(data);
       });
   }
   function deleteCustomer() {
-    console.log(customerId);
     userKit.deleteCustomerDetails(customerId).then(() => history.push("/home"));
   }
 

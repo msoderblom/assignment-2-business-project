@@ -24,8 +24,6 @@ export default function FormCreateCustomer() {
   });
 
   function onSubmit(data) {
-    console.log(data);
-
     userKit.createCustomer(data).then(() => {
       userKit
         .getCustomerList()

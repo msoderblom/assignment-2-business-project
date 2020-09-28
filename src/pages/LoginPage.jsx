@@ -46,7 +46,6 @@ export default function LoginPage() {
     });
   }
   function handleLogin(data) {
-    console.log(data);
     const loginEmail = data.email;
     const loginPassword = data.password;
 
@@ -57,7 +56,6 @@ export default function LoginPage() {
           history.push("/home");
         });
       } else {
-        console.log("fel inlogg");
         setError("credentials", {
           type: "manual",
           message:

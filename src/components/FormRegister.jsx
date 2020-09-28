@@ -58,14 +58,9 @@ export default function FormRegister({ setHasRegistered }) {
   ];
 
   function handleRegister(data) {
-    console.log(data);
-
     userKit.checkEmailExits(data.email).then((res) => {
-      console.log(res);
-
       if (res.ok) {
         // If the email already exists
-        console.log("email already exists");
         setError("email", {
           type: "manual",
           message: "This email is already in use. Please use another one.",

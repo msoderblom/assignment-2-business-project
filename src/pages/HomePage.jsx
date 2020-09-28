@@ -26,7 +26,6 @@ export default function HomePage() {
       .getUser()
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setUser(data);
       });
 

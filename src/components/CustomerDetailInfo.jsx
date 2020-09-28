@@ -26,7 +26,6 @@ export default function CustomerDetailInfo({ stateValue, keyName, label }) {
       <EditButton
         action={() => {
           setEdit({ ...edit, [keyName]: true });
-          console.log(edit);
         }}
       >
         <FiEdit color="#E0A000" size="20" />

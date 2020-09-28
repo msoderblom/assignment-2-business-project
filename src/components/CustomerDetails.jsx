@@ -104,9 +104,6 @@ export default function CustomerDetails({ customer }) {
   ];
 
   function handleEdit(data) {
-    console.log("form data: ", data);
-    console.log(Object.keys(data)[0]);
-
     const keyName = Object.keys(data)[0];
 
     const payload = data;
