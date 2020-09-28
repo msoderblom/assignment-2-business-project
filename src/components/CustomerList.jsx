@@ -8,8 +8,12 @@ import styled from "styled-components";
 const UlStyled = styled.ul`
   padding: 0;
   display: grid;
-  gap: 5px;
+  gap: 10px;
   list-style: none;
+`;
+
+const Container = styled.div`
+  padding: 1em;
 `;
 
 export default function CustomerList() {
@@ -32,7 +36,7 @@ export default function CustomerList() {
     // eslint-disable-next-line
   }, []);
   return (
-    <div>
+    <Container>
       <h2>Your Customers</h2>
       <UlStyled>
         {customerList &&
@@ -42,6 +46,6 @@ export default function CustomerList() {
             return <CustomerListItem key={id} customer={customer} />;
           })}
       </UlStyled>
-    </div>
+    </Container>
   );
 }

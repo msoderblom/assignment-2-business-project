@@ -43,12 +43,11 @@ export default function CustomerDetailPage(props) {
     // eslint-disable-next-line
   }, []);
   return (
-    <div>
-      <EditCustomerContext.Provider value={{ edit, setEdit }}>
-        Customer Details
+    <EditCustomerContext.Provider value={{ edit, setEdit }}>
+      <div>
         <ButtonStyled onClickFunc={deleteCustomer} title="Delete Customer" />
         {customerObj && <CustomerDetails customer={customerObj} />}
-      </EditCustomerContext.Provider>
-    </div>
+      </div>
+    </EditCustomerContext.Provider>
   );
 }

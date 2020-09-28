@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers";
 import * as yup from "yup";
 import UserKit from "../data/UserKit";
+import HeadingPage from "../atoms/HeadingPage";
 
 const schema = yup.object().shape({
   email: yup.string().email().required(),
@@ -58,12 +59,12 @@ export default function LoginPage() {
     <div>
       {uid && token ? (
         <div>
-          <h2>Activate Account</h2>
+          <HeadingPage>Activate Account</HeadingPage>
           <button onClick={handleActivateUser}>Activate User</button>
         </div>
       ) : (
         <div>
-          <h2>Login</h2>
+          <HeadingPage>Login</HeadingPage>
           <form onSubmit={handleSubmit(handleLogin)}>
             <p> {errors.credentials?.message}</p>
 

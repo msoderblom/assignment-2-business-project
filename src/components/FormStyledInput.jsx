@@ -5,7 +5,8 @@ const InputStyled = styled.input`
   appearance: none;
   border: none;
   border-radius: 3px;
-  box-shadow: 0px 2px 7px 1px rgba(0, 0, 0, 0.5);
+  /*  box-shadow: 0px 2px 7px 1px rgba(0, 0, 0, 0.5); */
+  box-shadow: 0 2px 4px 0 rgba(201, 201, 201, 0.5);
   padding: 0.5em 0.8em;
   width: 100%;
 
@@ -18,6 +19,11 @@ const LabelStyled = styled.label`
   display: block;
   font-size: 0.9em;
   font-weight: 200;
+`;
+const Error = styled.span`
+  color: ${(props) => props.theme.terraCotta};
+  font-size: 0.8em;
+  font-weight: 300;
 `;
 
 export default function FormStyledInput({
@@ -32,13 +38,14 @@ export default function FormStyledInput({
   return (
     <div>
       <LabelStyled>{label}</LabelStyled>
+
       <InputStyled
         name={name}
         type={type}
         placeholder={placeholder}
         ref={register}
       />
-      {error && <p>{error}</p>}
+      {error && <Error>{error}</Error>}
     </div>
   );
 }
