@@ -150,16 +150,20 @@ export default function CustomerDetails({ customer }) {
   }
 
   function renderDetails(stateValue, keyName, label, inputType) {
+    const validationSchema = yup
+      .object()
+      .shape({ [keyName]: schema.fields[keyName] });
+
     if (edit[keyName]) {
       return (
         <CustomerDetailEdit
           key={`${keyName}Edit`}
           handleEdit={handleEdit}
           keyName={keyName}
-          defaultValue={customer[keyName]}
+          defaultValue={stateValue}
           label={label}
           inputType={inputType}
-          schema={yup.object().shape({ [keyName]: schema.fields[keyName] })}
+          schema={validationSchema}
         />
       );
     } else {
