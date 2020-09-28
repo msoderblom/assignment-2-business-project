@@ -1,2 +1,12 @@
 export const summerSky = "#30a3d8";
-export const regalBlue = "#222E60";
+/* export const regalBlue = "#222E60"; */
+export const regalBlue = "#4B83A6";
+export const blackcurrant = "#181341";
+export const lightSkyBlue = "#7EC9F4";
+export const mulberry = "#D14C89";
+export const terraCotta = "#E17361";
+export const white = "#FEFEFE";
+export const whiteSmoke = "#F9F9F9";
+export const suvaGrey = "#929292";
+export const dodgerBlue = "#3478F6";
+export const christalle = "#4C1A5B";
