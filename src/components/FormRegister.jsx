@@ -1,6 +1,5 @@
 import { yupResolver } from "@hookform/resolvers";
-import * as yup from "yup";
-import React, { useState } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
 import UserKit from "../data/UserKit";
 import FormStyledInput from "./FormStyledInput";

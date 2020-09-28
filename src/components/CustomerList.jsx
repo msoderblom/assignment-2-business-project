@@ -1,7 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import UserKit from "../data/UserKit";
 import { CustomerListContext } from "../contexts/CustomerListContext";
-import { Link } from "react-router-dom";
 import CustomerListItem from "./CustomerListItem";
 import styled from "styled-components";
 

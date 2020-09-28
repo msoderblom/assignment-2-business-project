@@ -19,7 +19,7 @@ const Wrapper = styled.div`
 
 export default function HomePage() {
   const userKit = new UserKit();
-  const { user, setUser } = useContext(UserContext);
+  const { setUser } = useContext(UserContext);
 
   useEffect(() => {
     userKit
