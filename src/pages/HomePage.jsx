@@ -1,8 +1,21 @@
 import React, { useContext, useEffect } from "react";
+import styled from "styled-components";
 import CustomerList from "../components/CustomerList";
 import FormCreateCustomer from "../components/FormCreateCustomer";
 import { UserContext } from "../contexts/UserContext";
 import UserKit from "../data/UserKit";
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  @media screen and (min-width: 767px) {
+    flex-direction: row;
+  }
+
+  & > * {
+    flex: 1;
+  }
+`;
 
 export default function HomePage() {
   const userKit = new UserKit();
@@ -24,9 +37,11 @@ export default function HomePage() {
       <h2>Home</h2>
 
       <h4>Welcome {user && user.firstName}!</h4>
-      <CustomerList />
+      <Wrapper>
+        <CustomerList />
 
-      <FormCreateCustomer></FormCreateCustomer>
+        <FormCreateCustomer />
+      </Wrapper>
     </div>
   );
 }
