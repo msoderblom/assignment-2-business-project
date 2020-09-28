@@ -9,10 +9,11 @@ import ButtonStyled from "./ButtonStyled";
 import { createCustomerSchema } from "../validationSchemas/createCustomerSchema";
 
 const FormWapper = styled.div`
-  /* background-color: rgba(209, 76, 137, 0.5); */
-  /*  background-color: ${(props) => props.theme.white}; */
-  border-radius: 10px;
   padding: 1em;
+`;
+const FormStyled = styled.form`
+  display: grid;
+  gap: 8px;
 `;
 
 export default function FormCreateCustomer() {
@@ -39,7 +40,7 @@ export default function FormCreateCustomer() {
   return (
     <FormWapper>
       <h2>Create a new customer</h2>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <FormStyled onSubmit={handleSubmit(onSubmit)}>
         <FormStyledInput
           label="Name"
           name="name"
@@ -97,7 +98,7 @@ export default function FormCreateCustomer() {
         />
 
         <ButtonStyled type="submit" title="Create" />
-      </form>
+      </FormStyled>
     </FormWapper>
   );
 }

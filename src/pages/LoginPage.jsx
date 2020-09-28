@@ -19,6 +19,11 @@ const LoginError = styled(Error)`
   font-size: 1em;
 `;
 
+const FormStyled = styled.form`
+  display: grid;
+  gap: 8px;
+`;
+
 export default function LoginPage() {
   const userKit = new UserKit();
 
@@ -67,12 +72,15 @@ export default function LoginPage() {
       {uid && token ? (
         <div>
           <HeadingPage>Activate Account</HeadingPage>
-          <button onClick={handleActivateUser}>Activate User</button>
+          <ButtonStyled
+            onClickFunc={handleActivateUser}
+            title="Activate User"
+          />
         </div>
       ) : (
         <div>
           <HeadingPage>Login</HeadingPage>
-          <form onSubmit={handleSubmit(handleLogin)}>
+          <FormStyled onSubmit={handleSubmit(handleLogin)}>
             <LoginError> {errors.credentials?.message}</LoginError>
 
             <FormStyledInput
@@ -92,7 +100,7 @@ export default function LoginPage() {
             />
 
             <ButtonStyled type="submit" title="Sign in" />
-          </form>
+          </FormStyled>
         </div>
       )}
     </div>

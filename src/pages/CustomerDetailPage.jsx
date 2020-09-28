@@ -4,6 +4,19 @@ import CustomerDetails from "../components/CustomerDetails";
 import ButtonStyled from "../components/ButtonStyled";
 import UserKit from "../data/UserKit";
 import { EditCustomerContext } from "../contexts/EditCustomerContext";
+import styled from "styled-components";
+import { buttonCSS } from "../components/ButtonStyled";
+
+const PageWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const DeleteButton = styled.button`
+  ${buttonCSS}
+  max-width: 150px;
+  align-self: flex-end;
+`;
 
 export default function CustomerDetailPage(props) {
   const userKit = new UserKit();
@@ -43,11 +56,13 @@ export default function CustomerDetailPage(props) {
     // eslint-disable-next-line
   }, []);
   return (
-    <EditCustomerContext.Provider value={{ edit, setEdit }}>
-      <div>
-        <ButtonStyled onClickFunc={deleteCustomer} title="Delete Customer" />
-        {customerObj && <CustomerDetails customer={customerObj} />}
-      </div>
-    </EditCustomerContext.Provider>
+    <>
+      <EditCustomerContext.Provider value={{ edit, setEdit }}>
+        <PageWrapper>
+          <DeleteButton onClick={deleteCustomer}>Delete Customer</DeleteButton>
+          {customerObj && <CustomerDetails customer={customerObj} />}
+        </PageWrapper>
+      </EditCustomerContext.Provider>
+    </>
   );
 }

@@ -12,6 +12,11 @@ const RegisterError = styled(Error)`
   font-size: 1em;
 `;
 
+const FormStyled = styled.form`
+  display: grid;
+  gap: 8px;
+`;
+
 export default function FormRegister({ setHasRegistered }) {
   const userKit = new UserKit();
 
@@ -89,7 +94,7 @@ export default function FormRegister({ setHasRegistered }) {
       <HeadingPage>Register</HeadingPage>
       <p>Enter details to register</p>
 
-      <form onSubmit={handleSubmit(handleRegister)}>
+      <FormStyled onSubmit={handleSubmit(handleRegister)}>
         <RegisterError> {errors.registerError?.message}</RegisterError>
         {inputObjects.map((inputItem, index) => {
           const myProps = {
@@ -103,7 +108,7 @@ export default function FormRegister({ setHasRegistered }) {
           return <FormStyledInput {...myProps} key={index} />;
         })}
         <ButtonStyled type="submit" title="Register" />
-      </form>
+      </FormStyled>
     </div>
   );
 }

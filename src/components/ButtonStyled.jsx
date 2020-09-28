@@ -1,7 +1,7 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
-const Button = styled.button`
+export const buttonCSS = css`
   appearance: none;
   background: rgb(225, 115, 97);
   background: linear-gradient(
@@ -24,6 +24,10 @@ const Button = styled.button`
   &:focus {
     outline: none;
   }
+`;
+
+const Button = styled.button`
+  ${buttonCSS}
 `;
 
 export default function ButtonStyled({ title, onClickFunc }) {
