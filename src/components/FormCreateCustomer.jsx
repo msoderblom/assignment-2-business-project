@@ -1,46 +1,25 @@
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers";
-import * as yup from "yup";
 import UserKit from "../data/UserKit";
 import { CustomerListContext } from "../contexts/CustomerListContext";
 import FormStyledInput from "./FormStyledInput";
 import styled from "styled-components";
+import ButtonStyled from "./ButtonStyled";
+import { createCustomerSchema } from "../validationSchemas/createCustomerSchema";
 
 const FormWapper = styled.div`
-  background-color: ${(props) => props.theme.regalBlue};
+  /* background-color: rgba(209, 76, 137, 0.5); */
+  /*  background-color: ${(props) => props.theme.white}; */
+  border-radius: 10px;
   padding: 1em;
 `;
-
-const vatNrRegex = RegExp(/^(SE)?[0-9]{12}$/);
-
-const schema = yup.object().shape({
-  name: yup.string().required("Name is required."),
-  organisationNr: yup
-    .string()
-    .trim()
-    .length(
-      10,
-      `The organisation number must be 10 digits without spaces in between.`
-    ),
-  paymentTerm: yup
-    .number()
-    .typeError("Payment Term is required.")
-    .integer("Payment Term must be un integer")
-    .min(0, "Payment Term must be a positive number, at least 0.")
-    .required("Payment Term is required."),
-  email: yup.string().email(),
-  vatNr: yup
-    .string()
-    .matches(vatNrRegex, "VAT Nr must follow this fotmat: SE999999999901"),
-  /* website: yup.string().url(), */
-});
 
 export default function FormCreateCustomer() {
   const userKit = new UserKit();
   const { setCustomerList } = useContext(CustomerListContext);
   const { register, handleSubmit, errors, reset } = useForm({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(createCustomerSchema),
   });
 
   function onSubmit(data) {
@@ -59,6 +38,7 @@ export default function FormCreateCustomer() {
 
   return (
     <FormWapper>
+      <h2>Create a new customer</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
         <FormStyledInput
           label="Name"
@@ -73,7 +53,7 @@ export default function FormCreateCustomer() {
           register={register}
           error={errors.organisationNr?.message}
         />
-        {/*   <p>{errors.organisationNr?.message}</p> */}
+
         <FormStyledInput
           label="VAT identification number"
           name="vatNr"
@@ -116,7 +96,7 @@ export default function FormCreateCustomer() {
           inputType="tel"
         />
 
-        <button type="submit">Create</button>
+        <ButtonStyled type="submit" title="Create" />
       </form>
     </FormWapper>
   );
