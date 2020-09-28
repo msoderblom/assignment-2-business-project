@@ -1,5 +1,5 @@
 import { createGlobalStyle } from "styled-components";
-import { whiteSmoke } from "./theme";
+import { blackcurrant, white } from "./theme";
 
 export const GlobalStyles = createGlobalStyle`
 
@@ -9,7 +9,8 @@ export const GlobalStyles = createGlobalStyle`
   font-family: 'Poppins', sans-serif;
 }
 body { font-size: 16px; 
-  background-color: ${whiteSmoke};
+  background-color: ${blackcurrant};
+  color: ${white}
 
 }
 input, select { font-size: 100%; }
