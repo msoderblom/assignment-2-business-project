@@ -2,15 +2,20 @@ import { yupResolver } from "@hookform/resolvers";
 import React from "react";
 import { useForm } from "react-hook-form";
 import UserKit from "../data/UserKit";
-import FormStyledInput from "./FormStyledInput";
+import FormStyledInput, { Error } from "./FormStyledInput";
 import ButtonStyled from "./ButtonStyled";
 import HeadingPage from "../atoms/HeadingPage";
 import { registerSchema } from "../validationSchemas/registerSchema";
+import styled from "styled-components";
+
+const RegisterError = styled(Error)`
+  font-size: 1em;
+`;
 
 export default function FormRegister({ setHasRegistered }) {
   const userKit = new UserKit();
 
-  const { register, handleSubmit, errors, reset } = useForm({
+  const { register, handleSubmit, errors, reset, setError } = useForm({
     resolver: yupResolver(registerSchema),
   });
 
@@ -49,17 +54,34 @@ export default function FormRegister({ setHasRegistered }) {
 
   function handleRegister(data) {
     console.log(data);
-    userKit
-      .register(data)
-      .then((res) => {
-        if (res.ok) {
-          setHasRegistered(true);
-          reset();
-        } else {
-          throw new Error("Something went wrong");
-        }
-      })
-      .catch((error) => console.log(error));
+
+    userKit.checkEmailExits(data.email).then((res) => {
+      console.log(res);
+
+      if (res.ok) {
+        // If the email already exists
+        console.log("email already exists");
+        setError("email", {
+          type: "manual",
+          message: "This email is already in use. Please use another one.",
+        });
+      } else {
+        // If the email is not in use
+
+        userKit.register(data).then((res) => {
+          if (res.ok) {
+            setHasRegistered(true);
+            reset();
+          } else {
+            setError("registerError", {
+              type: "manual",
+              message:
+                "Something went wrong with your registration. Please try again.",
+            });
+          }
+        });
+      }
+    });
   }
 
   return (
@@ -68,6 +90,7 @@ export default function FormRegister({ setHasRegistered }) {
       <p>Enter details to register</p>
 
       <form onSubmit={handleSubmit(handleRegister)}>
+        <RegisterError> {errors.registerError?.message}</RegisterError>
         {inputObjects.map((inputItem, index) => {
           const myProps = {
             label: inputItem.label,

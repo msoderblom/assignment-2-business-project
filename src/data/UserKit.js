@@ -12,6 +12,17 @@ export default class UserKit {
     });
   }
 
+  async checkEmailExits(email) {
+    const url = `${ROOT_URL}api/v1/check-email-exists/`;
+
+    const payload = { email };
+    return fetch(url, {
+      method: "POST",
+      headers: this.getPublicHeaders(),
+      body: JSON.stringify(payload),
+    });
+  }
+
   async activateUser(uid, token) {
     const url = `${ROOT_URL}auth/users/activate/`;
     const payload = {
