@@ -17,6 +17,9 @@ const Button = styled.button`
       transform: scale(1.1);
     }
   }
+  &:focus {
+    outline: none;
+  }
 `;
 
 export default function EditButton({ children, action }) {
