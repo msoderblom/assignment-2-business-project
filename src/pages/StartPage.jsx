@@ -18,6 +18,7 @@ const Container = styled.div`
   grid-template-columns: 1fr;
   grid-template-rows: auto auto auto;
   gap: 1em;
+  color: black;
 
   a {
     display: flex;
