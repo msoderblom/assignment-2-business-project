@@ -20,7 +20,7 @@ const LabelStyled = styled.label`
   font-size: 0.9em;
   font-weight: 200;
 `;
-const Error = styled.span`
+export const Error = styled.span`
   color: ${(props) => props.theme.terraCotta};
   font-size: 0.8em;
   font-weight: 300;

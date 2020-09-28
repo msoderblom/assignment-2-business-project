@@ -6,11 +6,18 @@ import { yupResolver } from "@hookform/resolvers";
 import * as yup from "yup";
 import UserKit from "../data/UserKit";
 import HeadingPage from "../atoms/HeadingPage";
+import { Error } from "../components/FormStyledInput";
+import styled from "styled-components";
+import ButtonStyled from "../components/ButtonStyled";
 
 const schema = yup.object().shape({
-  email: yup.string().email().required(),
-  password: yup.string().required(),
+  email: yup.string().email().required("Email is requried."),
+  password: yup.string().required("Password is required."),
 });
+
+const LoginError = styled(Error)`
+  font-size: 1em;
+`;
 
 export default function LoginPage() {
   const userKit = new UserKit();
@@ -66,7 +73,7 @@ export default function LoginPage() {
         <div>
           <HeadingPage>Login</HeadingPage>
           <form onSubmit={handleSubmit(handleLogin)}>
-            <p> {errors.credentials?.message}</p>
+            <LoginError> {errors.credentials?.message}</LoginError>
 
             <FormStyledInput
               label="Email"
@@ -74,15 +81,17 @@ export default function LoginPage() {
               placeholder="name@email.com"
               register={register}
               inputType="email"
+              error={errors.email?.message}
             />
             <FormStyledInput
               label="Password"
               name="password"
               register={register}
               inputType="password"
+              error={errors.password?.message}
             />
 
-            <button type="submit">Sign in</button>
+            <ButtonStyled type="submit" title="Sign in" />
           </form>
         </div>
       )}
