@@ -11,7 +11,6 @@ export const buttonCSS = css`
   );
   border: none;
   border-radius: 50px;
-  /*   box-shadow: 0px 2px 7px 1px rgba(0, 0, 0, 0.5); */
   color: white;
   font-size: 0.8em;
   padding: 0.5em 0.8em;

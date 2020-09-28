@@ -5,7 +5,6 @@ const InputStyled = styled.input`
   appearance: none;
   border: none;
   border-radius: 3px;
-  /*  box-shadow: 0px 2px 7px 1px rgba(0, 0, 0, 0.5); */
   box-shadow: 0 2px 4px 0 rgba(201, 201, 201, 0.5);
   padding: 0.5em 0.8em;
   width: 100%;
