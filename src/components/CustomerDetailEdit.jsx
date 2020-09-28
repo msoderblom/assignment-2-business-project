@@ -4,17 +4,27 @@ import React, { useContext, useEffect } from "react";
 import { FiCheck, FiX } from "react-icons/fi";
 import styled from "styled-components";
 import { EditCustomerContext } from "../contexts/EditCustomerContext";
-import FormInputStyled from "./FormInputStyled";
 import FormStyledInput from "./FormStyledInput";
 import { useForm } from "react-hook-form";
+import EditButton from "./EditButton";
 
 const EditContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   -ms-touch-action: manipulation;
   touch-action: manipulation;
 `;
+
+const Form = styled.form`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+/* const EditButton = styled.button`
+  appearance: none;
+  background-color: white;
+  border-radius: 50%;
+  padding: 5px;
+  line-height: 0;
+`; */
 
 export default function CustomerDetailEdit({
   handleEdit,
@@ -36,7 +46,7 @@ export default function CustomerDetailEdit({
   }, []);
   return (
     <EditContainer>
-      <form onSubmit={handleSubmit(handleEdit)}>
+      <Form onSubmit={handleSubmit(handleEdit)}>
         <FormStyledInput
           label={label}
           name={keyName}
@@ -45,21 +55,18 @@ export default function CustomerDetailEdit({
           error={errors[keyName]?.message}
         />
         <div>
-          <button
-            type="submit" /* onClick={() => handleEdit(keyName, stateValue)} */
-          >
+          <EditButton type="submit">
             <FiCheck color="green" size="20" />
-          </button>
-          <button
-            onClick={() => {
-              /*  setStateValue(oldValue); */
+          </EditButton>
+          <EditButton
+            action={() => {
               setEdit({ ...edit, [keyName]: false });
             }}
           >
             <FiX color="red" size="20" />
-          </button>
+          </EditButton>
         </div>
-      </form>
+      </Form>
     </EditContainer>
   );
 }
