@@ -35,8 +35,6 @@ export default function HomePage() {
   return (
     <div>
       <h2>Home</h2>
-
-      <h4>Welcome {user && user.firstName}!</h4>
       <Wrapper>
         <CustomerList />
 
