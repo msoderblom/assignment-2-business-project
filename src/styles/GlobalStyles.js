@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components";
+import { whiteSmoke } from "./theme";
 
 export const GlobalStyles = createGlobalStyle`
 
@@ -7,7 +8,10 @@ export const GlobalStyles = createGlobalStyle`
   margin: 0;
   font-family: 'Poppins', sans-serif;
 }
-body { font-size: 16px; }
+body { font-size: 16px; 
+  background-color: ${whiteSmoke};
+
+}
 input, select { font-size: 100%; }
 @media screen and (max-width: 767px) {
   input, select, textarea {
