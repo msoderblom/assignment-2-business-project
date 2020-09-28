@@ -12,8 +12,10 @@ const Button = styled.button`
   transition: all 0.2s ease-in-out;
 
   :hover {
-    cursor: pointer;
-    transform: scale(1.1);
+    @media only screen and (min-width: 600px) {
+      cursor: pointer;
+      transform: scale(1.1);
+    }
   }
 `;
 

@@ -3,7 +3,11 @@ import styled from "styled-components";
 import { UserContext } from "../contexts/UserContext";
 
 const MainContent = styled.main`
-  padding: 1rem;
+  padding: 0.5rem;
+
+  @media only screen and (min-width: 600px) {
+    padding: 1rem;
+  }
 `;
 
 export default function LayoutSimple({ children }) {

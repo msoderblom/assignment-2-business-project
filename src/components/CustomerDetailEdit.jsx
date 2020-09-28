@@ -15,16 +15,19 @@ const EditContainer = styled.div`
 
 const Form = styled.form`
   display: flex;
-  align-items: center;
+  align-items: flex-end;
+
   justify-content: space-between;
 `;
-/* const EditButton = styled.button`
-  appearance: none;
-  background-color: white;
-  border-radius: 50%;
-  padding: 5px;
-  line-height: 0;
-`; */
+const ButtonWrapper = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-rows: 1fr;
+  gap: 5px;
+  align-items: center;
+  justify-items: center;
+  padding: 0.2em 0 0.2em 10px;
+`;
 
 export default function CustomerDetailEdit({
   handleEdit,
@@ -54,7 +57,7 @@ export default function CustomerDetailEdit({
           inputType={inputType}
           error={errors[keyName]?.message}
         />
-        <div>
+        <ButtonWrapper>
           <EditButton type="submit">
             <FiCheck color="green" size="20" />
           </EditButton>
@@ -65,7 +68,7 @@ export default function CustomerDetailEdit({
           >
             <FiX color="red" size="20" />
           </EditButton>
-        </div>
+        </ButtonWrapper>
       </Form>
     </EditContainer>
   );
