@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "0cf112f87ba0a47549e6f5cd0647ae48",
+    "revision": "dd3447d4949a0b13adbdb299fe325da1",
     "url": "/business-management/index.html"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/business-management/static/js/2.b18d1b6d.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "26dc35b683757c403f13",
-    "url": "/business-management/static/js/main.e3529701.chunk.js"
+    "revision": "73cd3628905d9f2f2766",
+    "url": "/business-management/static/js/main.81fffa3e.chunk.js"
   },
   {
     "revision": "954268ac3fb6b0f7bf0c",
