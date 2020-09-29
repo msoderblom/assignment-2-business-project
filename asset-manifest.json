@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.js": "/business-management/static/js/main.d5be9ad1.chunk.js",
-    "main.js.map": "/business-management/static/js/main.d5be9ad1.chunk.js.map",
+    "main.js": "/business-management/static/js/main.e3529701.chunk.js",
+    "main.js.map": "/business-management/static/js/main.e3529701.chunk.js.map",
     "runtime-main.js": "/business-management/static/js/runtime-main.d3a5a870.js",
     "runtime-main.js.map": "/business-management/static/js/runtime-main.d3a5a870.js.map",
-    "static/js/2.e61340b7.chunk.js": "/business-management/static/js/2.e61340b7.chunk.js",
-    "static/js/2.e61340b7.chunk.js.map": "/business-management/static/js/2.e61340b7.chunk.js.map",
+    "static/js/2.b18d1b6d.chunk.js": "/business-management/static/js/2.b18d1b6d.chunk.js",
+    "static/js/2.b18d1b6d.chunk.js.map": "/business-management/static/js/2.b18d1b6d.chunk.js.map",
     "index.html": "/business-management/index.html",
-    "precache-manifest.44316e750f1f39862cef959f1a9740e1.js": "/business-management/precache-manifest.44316e750f1f39862cef959f1a9740e1.js",
+    "precache-manifest.71b2cf30a128ef6ea8482a987696856b.js": "/business-management/precache-manifest.71b2cf30a128ef6ea8482a987696856b.js",
     "service-worker.js": "/business-management/service-worker.js",
-    "static/js/2.e61340b7.chunk.js.LICENSE.txt": "/business-management/static/js/2.e61340b7.chunk.js.LICENSE.txt"
+    "static/js/2.b18d1b6d.chunk.js.LICENSE.txt": "/business-management/static/js/2.b18d1b6d.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.d3a5a870.js",
-    "static/js/2.e61340b7.chunk.js",
-    "static/js/main.d5be9ad1.chunk.js"
+    "static/js/2.b18d1b6d.chunk.js",
+    "static/js/main.e3529701.chunk.js"
   ]
 }
